@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { ArrowLeft } from 'phosphor-react-native';
+import { captureScreen } from 'react-native-view-shot';
 
 import { styles } from './styles';
 import { theme } from '../../theme';
@@ -35,8 +36,8 @@ export function FeedbackForm({ feedbackType }: FeedbackFormProps) {
       <TextInput multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
 
       <View style={styles.footer}>
-        <ScreenshotButton onTakenShot={() => {}} onRemoveShot={() => {}} screenshot="https://github.com/LucasSiqueira1.png"/>
-        <ButtonSendFeedback isLoading={false}/>
+        <ScreenshotButton onTakenShot={() => { }} onRemoveShot={() => { }} screenshot="https://github.com/LucasSiqueira1.png" />
+        <ButtonSendFeedback isLoading={false} />
       </View>
     </View>
   );

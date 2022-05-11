@@ -28,7 +28,7 @@ export function Widget() {
 
       <BottomSheet ref={bottomSheetRef} snapPoints={[1, 280]} backgroundStyle={styles.modal} handleIndicatorStyle={styles.indicator}>
         {/* <Options /> */}
-        {/* <FeedbackForm feedbackType='BUG'/> */}
+        <FeedbackForm feedbackType='BUG'/>
         <SucessFeedback/>
       </BottomSheet>
     </>
