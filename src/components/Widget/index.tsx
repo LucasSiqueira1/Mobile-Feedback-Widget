@@ -7,6 +7,10 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { styles } from './styles';
 import { theme } from '../../theme';
 import { Options } from '../Options';
+import { feedbackTypes } from '../../utils/feedbackTypes';
+import { FeedbackForm } from '../FeedbackForm';
+
+export type FeedbackType = keyof typeof feedbackTypes;
 
 export function Widget() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -22,7 +26,8 @@ export function Widget() {
       </TouchableOpacity>
 
       <BottomSheet ref={bottomSheetRef} snapPoints={[1, 280]} backgroundStyle={styles.modal} handleIndicatorStyle={styles.indicator}>
-        <Options/>
+        {/* <Options /> */}
+        <FeedbackForm feedbackType='BUG'/>
       </BottomSheet>
     </>
   );
