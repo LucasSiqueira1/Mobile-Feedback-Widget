@@ -7,6 +7,7 @@ import { theme } from '../../theme';
 import { FeedbackType } from '../../components/Widget'
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { ScreenshotButton } from '../ScreenshotButton';
+import { ButtonSendFeedback } from '../ButtonSendFeedback';
 
 
 interface FeedbackFormProps {
@@ -33,7 +34,10 @@ export function FeedbackForm({ feedbackType }: FeedbackFormProps) {
 
       <TextInput multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
 
-      <View style={styles.footer}><ScreenshotButton onTakenShot={() => {}} onRemoveShot={() => {}} screenshot=""/></View>
+      <View style={styles.footer}>
+        <ScreenshotButton onTakenShot={() => {}} onRemoveShot={() => {}} screenshot="https://github.com/LucasSiqueira1.png"/>
+        <ButtonSendFeedback isLoading={false}/>
+      </View>
     </View>
   );
 }
