@@ -9,6 +9,7 @@ import { theme } from '../../theme';
 import { Options } from '../Options';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { FeedbackForm } from '../FeedbackForm';
+import { SucessFeedback } from '../SucessFeedback';
 
 export type FeedbackType = keyof typeof feedbackTypes;
 
@@ -27,7 +28,8 @@ export function Widget() {
 
       <BottomSheet ref={bottomSheetRef} snapPoints={[1, 280]} backgroundStyle={styles.modal} handleIndicatorStyle={styles.indicator}>
         {/* <Options /> */}
-        <FeedbackForm feedbackType='BUG'/>
+        {/* <FeedbackForm feedbackType='BUG'/> */}
+        <SucessFeedback/>
       </BottomSheet>
     </>
   );
