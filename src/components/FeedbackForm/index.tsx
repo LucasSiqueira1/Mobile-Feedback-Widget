@@ -6,13 +6,14 @@ import { styles } from './styles';
 import { theme } from '../../theme';
 import { FeedbackType } from '../../components/Widget'
 import { feedbackTypes } from '../../utils/feedbackTypes';
+import { ScreenshotButton } from '../ScreenshotButton';
 
 
 interface FeedbackFormProps {
   feedbackType: FeedbackType;
 }
 
-export function FeedbackForm({feedbackType}: FeedbackFormProps) {
+export function FeedbackForm({ feedbackType }: FeedbackFormProps) {
   const feedbackInfo = feedbackTypes[feedbackType];
   return (
     <View style={styles.container}>
@@ -23,7 +24,7 @@ export function FeedbackForm({feedbackType}: FeedbackFormProps) {
         </TouchableOpacity>
 
         <View style={styles.titleContainer}>
-          <Image source={feedbackInfo.image} style={styles.image}/>
+          <Image source={feedbackInfo.image} style={styles.image} />
           <Text style={styles.titleText}>
             {feedbackInfo.title}
           </Text>
@@ -31,6 +32,8 @@ export function FeedbackForm({feedbackType}: FeedbackFormProps) {
       </View>
 
       <TextInput multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
+
+      <View style={styles.footer}><ScreenshotButton onTakenShot={() => {}} onRemoveShot={() => {}} screenshot=""/></View>
     </View>
   );
 }
