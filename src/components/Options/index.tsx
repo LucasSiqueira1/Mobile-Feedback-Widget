@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import { Copyright } from '../Copyright';
+import { CopyrightRodape } from '../CopyrightRodape';
 import { FeedbackOption } from '../FeedbackOption';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { styles } from './styles';
@@ -18,7 +18,7 @@ export function Options() {
           ))
         }
       </View>
-      <Copyright />
+      <CopyrightRodape />
     </View>
   );
 }
