@@ -1,12 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 
 import { styles } from './styles';
 
-export function ScreenshotButton() {
-  return (
-    <View style={styles.container}>
+interface ScreenshotButtonProps {
+  screenshot: string | null;
+  onTakenShot: () => void;
+  onRemoveShot: () => void;
+}
 
-    </View>
+export function ScreenshotButton({ screenshot }: ScreenshotButtonProps) {
+  return (
+    <TouchableOpacity style={styles.container}>
+
+    </TouchableOpacity>
   );
 }
