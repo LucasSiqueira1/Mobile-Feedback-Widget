@@ -13,15 +13,34 @@ import { ButtonSendFeedback } from '../ButtonSendFeedback';
 
 interface FeedbackFormProps {
   feedbackType: FeedbackType;
+  returnFeedback: () => void;
+  isFeedbackSend: () => void;
 }
 
-export function FeedbackForm({ feedbackType }: FeedbackFormProps) {
+export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: FeedbackFormProps) {
+  const [screenShot, setScreenShot] = useState<string | null>(null);
+
+  const handleScreenshot = () => {
+    captureScreen({
+      format: 'jpg',
+      quality: 0.8,
+
+    })
+      .then(uri => setScreenShot(uri))
+      .catch(err => console.error('Oops, erro no screenshot', err));
+  }
+
+  const removeScreenShot = () => {
+    setScreenShot(null);
+  }
+
+
   const feedbackInfo = feedbackTypes[feedbackType];
   return (
     <View style={styles.container}>
 
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={returnFeedback}>
           <ArrowLeft size={24} weight="bold" color={theme.colors.text_secondary} />
         </TouchableOpacity>
 
@@ -36,7 +55,7 @@ export function FeedbackForm({ feedbackType }: FeedbackFormProps) {
       <TextInput multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
 
       <View style={styles.footer}>
-        <ScreenshotButton onTakenShot={() => { }} onRemoveShot={() => { }} screenshot="https://github.com/LucasSiqueira1.png" />
+        <ScreenshotButton onTakenShot={() => { handleScreenshot() }} onRemoveShot={() => { removeScreenShot() }} screenshot={screenShot} />
         <ButtonSendFeedback isLoading={false} />
       </View>
     </View>
