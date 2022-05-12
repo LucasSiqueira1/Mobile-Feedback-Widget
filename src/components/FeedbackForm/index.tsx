@@ -9,6 +9,7 @@ import { FeedbackType } from '../../components/Widget'
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { ScreenshotButton } from '../ScreenshotButton';
 import { ButtonSendFeedback } from '../ButtonSendFeedback';
+import { api } from '../../utils/api';
 
 
 interface FeedbackFormProps {
@@ -19,6 +20,7 @@ interface FeedbackFormProps {
 
 export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: FeedbackFormProps) {
   const [screenShot, setScreenShot] = useState<string | null>(null);
+  const [comment, setComment] = useState<string>('');
   const [feedbackSendButton, setFeedbackSendButton] = useState(false);
 
   const handleScreenshot = () => {
@@ -42,7 +44,11 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
       setFeedbackSendButton(true);
     
       try {
-        
+        await api.post('/feedbacks', {
+          type: feedbackType,
+          screenShot,
+          comment,
+        })
       } catch (error) {
         console.log(error);
         setFeedbackSendButton(false);
@@ -68,7 +74,7 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
         </View>
       </View>
 
-      <TextInput multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
+      <TextInput onChangeText={setComment} multiline style={styles.input} placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..." placeholderTextColor={theme.colors.text_secondary}></TextInput>
 
       <View style={styles.footer}>
         <ScreenshotButton onTakenShot={() => { handleScreenshot() }} onRemoveShot={() => { removeScreenShot() }} screenshot={screenShot} />
