@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { ArrowLeft } from 'phosphor-react-native';
 import { captureScreen } from 'react-native-view-shot';
+import * as FileSystem from 'expo-file-system';
 
 import { styles } from './styles';
 import { theme } from '../../theme';
@@ -42,11 +43,12 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
       return;
     } 
       setFeedbackSendButton(true);
-    
+      const screenshotBase64 = screenShot && FileSystem.readAsStringAsync(screenShot, { encoding: 'base64' });
+
       try {
         await api.post('/feedbacks', {
           type: feedbackType,
-          screenShot,
+          screenShot: `data:image/png;base64,${screenshotBase64}`,
           comment,
         })
 
