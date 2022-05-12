@@ -43,7 +43,7 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
       return;
     } 
       setFeedbackSendButton(true);
-      const screenshotBase64 = screenShot && FileSystem.readAsStringAsync(screenShot, { encoding: 'base64' });
+      const screenshotBase64 = screenShot && await FileSystem.readAsStringAsync(screenShot, { encoding: 'base64' });
 
       try {
         await api.post('/feedbacks', {
