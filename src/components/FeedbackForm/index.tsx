@@ -19,6 +19,7 @@ interface FeedbackFormProps {
 
 export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: FeedbackFormProps) {
   const [screenShot, setScreenShot] = useState<string | null>(null);
+  const [feedbackSendButton, setFeedbackSendButton] = useState(false);
 
   const handleScreenshot = () => {
     captureScreen({
@@ -34,6 +35,20 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
     setScreenShot(null);
   }
 
+  const handleSendFeedback = async () => {
+    if (feedbackSendButton) {
+      return;
+    } 
+      setFeedbackSendButton(true);
+    
+      try {
+        
+      } catch (error) {
+        console.log(error);
+        setFeedbackSendButton(false);
+      }
+  }
+
 
   const feedbackInfo = feedbackTypes[feedbackType];
   return (
@@ -46,6 +61,7 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
 
         <View style={styles.titleContainer}>
           <Image source={feedbackInfo.image} style={styles.image} />
+
           <Text style={styles.titleText}>
             {feedbackInfo.title}
           </Text>
@@ -56,7 +72,7 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
 
       <View style={styles.footer}>
         <ScreenshotButton onTakenShot={() => { handleScreenshot() }} onRemoveShot={() => { removeScreenShot() }} screenshot={screenShot} />
-        <ButtonSendFeedback isLoading={false} />
+        <ButtonSendFeedback isLoading={feedbackSendButton} onPress={() => { handleSendFeedback() }} />
       </View>
     </View>
   );
