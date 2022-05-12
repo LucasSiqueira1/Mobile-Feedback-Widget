@@ -5,13 +5,18 @@ import { styles } from './styles';
 import successImg from '../../assets/success.png';
 import { CopyrightRodape } from '../CopyrightRodape';
 
-export function SucessFeedback() {
+interface SucessFeedbackProps {
+  otherFeedback: () => void;
+}
+
+
+export function SucessFeedback({ otherFeedback }: SucessFeedbackProps) {
   return (
     <View style={styles.container}>
-      <Image source={successImg} style={styles.image}/>
+      <Image source={successImg} style={styles.image} />
       <Text style={styles.title}>Agradeçemos o feedback</Text>
-      
-      <TouchableOpacity style={styles.touch}>
+
+      <TouchableOpacity style={styles.touch} onPress={() => otherFeedback()}>
         <Text style={styles.buttonTitle}>Quero enviar outro</Text>
       </TouchableOpacity>
 

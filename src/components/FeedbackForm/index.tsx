@@ -49,6 +49,8 @@ export function FeedbackForm({ feedbackType, returnFeedback, isFeedbackSend }: F
           screenShot,
           comment,
         })
+
+        isFeedbackSend();
       } catch (error) {
         console.log(error);
         setFeedbackSendButton(false);

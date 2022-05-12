@@ -23,7 +23,7 @@ export function Widget() {
     bottomSheetRef.current?.expand();
   }
 
-  const handleReturnFeedbkack = () => {
+  const handleReturnFeedback = () => {
     setFeedbackType(null);
     setFeedbackSend(false);
   }
@@ -43,11 +43,11 @@ export function Widget() {
         {/* <Options /> */}
         {/* <FeedbackForm feedbackType='BUG'/>
         <SucessFeedback/> */}
-        {feedbackSend ? <SucessFeedback />
+        {feedbackSend ? <SucessFeedback otherFeedback ={() => handleReturnFeedback()} />
           :
           <>
             {
-              feedbackType ? <FeedbackForm feedbackType={feedbackType} returnFeedback={() => { handleReturnFeedbkack() }} isFeedbackSend={() => { handleFeedbackSend()}} />
+              feedbackType ? <FeedbackForm feedbackType={feedbackType} returnFeedback={() => { handleReturnFeedback() }} isFeedbackSend={() => { handleFeedbackSend()}} />
                 :
                 <Options onFeedbackTypeChanged={setFeedbackType} />
             }
